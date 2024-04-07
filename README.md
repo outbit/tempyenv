@@ -4,6 +4,8 @@ tempyenv
 Description
 ===========
 
+The easiest and quickest way to create a temp/tmp/temporary python virtual environment.
+
 tempyenv sets up a python environment in a temporary path.  Quick way to create a throw away python environment.
 
 [![Build Status](https://app.travis-ci.com/outbit/tempyenv.svg?branch=develop "ansible-docs latest build")](http://travis-ci.org/outbit/tempyenv)
@@ -24,6 +26,10 @@ Usage
 
 ```shell
 $ tempyenv
+(tempyenv) is setting up your virtual environment...hold tight
+Virtual environment created at /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
+Virtual environment loading from /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
+(tempyenv)(venv) $ echo "now you can pip install in your virtual environment"
 ```
 
 License

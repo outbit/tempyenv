@@ -1,12 +1,19 @@
+Test locally
+===
+
+```bash
+$ python -m pip install -e .
+```
+
 Build new release
 ===
 
 ```bash
-git checkout master
-git merge develop --no-ff
-git push
-git tag vX.Y.Z
-git push origin vX.Y.Z
+$ git checkout master
+$ git merge develop --no-ff
+$ git push
+$ git tag vX.Y.Z
+$ git push origin vX.Y.Z
 ```
 
 - Publish a release on github.com
@@ -32,9 +39,10 @@ username = xyz
 password = xyz
 
 # Build
-python setup.py bdist_wheel --universal
+$ python3 -m build
+#$ python setup.py bdist_wheel --universal
 
 # Upload
-rm -f dist/*
-twine upload --repository-url https://upload.pypi.org/legacy/ dist/tempyenv-*
+$ rm -f dist/*
+$ twine upload --repository-url https://upload.pypi.org/legacy/ dist/tempyenv-*
 ```

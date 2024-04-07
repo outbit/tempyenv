@@ -33,9 +33,12 @@ class TemporaryVenvCreator:
         except subprocess.CalledProcessError as e:
             print(f"Error loading virtual environment: {e}")
 
-if __name__ == "__main__":
+def main():
     venv_creator = TemporaryVenvCreator()
     venv_creator.create_temporary_directory()
     venv_creator.create_virtual_environment()
     venv_creator.load_virtual_environment()
+
+if __name__ == "__main__":
+    main()
 

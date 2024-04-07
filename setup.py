@@ -3,7 +3,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('lib'))
+sys.path.insert(0, os.path.abspath('src'))
 from tempyenv import __version__, __author__
 
 from pathlib import Path
@@ -32,9 +32,9 @@ setup(
         'setuptools'],
     include_package_data=True,
     package_dir={
-        '': 'lib'},
+        '': 'src'},
     package_data = { '': ['*.j2']},
-    packages=find_packages('lib'),
+    packages=find_packages('src'),
     classifiers=[
         'Environment :: Console',
         'Intended Audience :: Developers',

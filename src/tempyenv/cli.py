@@ -34,6 +34,7 @@ class TemporaryVenvCreator:
             print(f"Error loading virtual environment: {e}")
 
 def main():
+    print("(tempyenv) is setting up your virtual environment...hold tight")
     venv_creator = TemporaryVenvCreator()
     venv_creator.create_temporary_directory()
     venv_creator.create_virtual_environment()

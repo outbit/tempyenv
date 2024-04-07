@@ -3,6 +3,7 @@ Test locally
 
 ```bash
 $ python -m pip install -e .
+$ tempyenv
 ```
 
 Build new release
@@ -25,24 +26,25 @@ Follow instructions to build and publish to pypi
 # Setup your ~/.pypirc
 [distutils]
 index-servers =
-  tempyenv
-  tempyenv-test
+  pypi
+  pypi-test
 
-[tempyenv]
-repository = https://upload.pypi.org/legacy/
-username = xyz
-password = xyz
+[pypi]
+  username = __token__
+  password = SECRET
 
-[tempyenv-test]
-repository = https://test.pypi.org/legacy/
-username = xyz
-password = xyz
+[pypi-test]
+  username = __token__
+  password = SECRET
 
 # Build
+$ python3 -m pip install --upgrade pip
+$ python3 -m pip install --upgrade build
 $ python3 -m build
-#$ python setup.py bdist_wheel --universal
+$ rm -f dist/*
+$ python3 -m build
 
 # Upload
-$ rm -f dist/*
-$ twine upload --repository-url https://upload.pypi.org/legacy/ dist/tempyenv-*
+$ python3 -m pip install --upgrade twine
+$ python3 -m twine upload --repository pypi dist/* --verbose
 ```

@@ -9,7 +9,7 @@ class TemporaryVenvCreator:
         self.venv_path = None
 
     def create_temporary_directory(self):
-        self.temp_dir = tempfile.TemporaryDirectory(delete=False)
+        self.temp_dir = tempfile.TemporaryDirectory()
         self.venv_path = os.path.join(self.temp_dir.name, 'venv')
 
     def create_virtual_environment(self):

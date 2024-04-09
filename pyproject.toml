@@ -1,6 +1,6 @@
 [project]
 name = "tempyenv"
-version = "1.0.1"
+version = "1.0.2"
 authors = [
   { name="David Whiteside", email="david@davidwhiteside.com" },
 ]
@@ -24,6 +24,7 @@ build-backend = "setuptools.build_meta"
 
 [project.scripts]
 tempyenv = "tempyenv.cli:main"
+tmpyenv = "tempyenv.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

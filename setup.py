@@ -58,7 +58,8 @@ setup(
     python_requires='>=3.7',
     entry_points={
         'console_scripts': [
-          'tempyenv = tempyenv.cli:main'
+          'tempyenv = tempyenv.cli:main',
+          'tmpyenv = tempyenv.cli:main',
         ]
     },
     data_files=[],

@@ -24,11 +24,13 @@ $ python -m pip install tempyenv
 Usage
 ===========
 
-```shell
+```bash
 $ tmpyenv
+```
 
 or
 
+```bash
 $ tempyenv
 (tempyenv) is setting up your virtual environment...hold tight
 Virtual environment created at /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv

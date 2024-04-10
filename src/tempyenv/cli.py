@@ -5,9 +5,13 @@ import sys
 
 
 class TemporaryVenvCreator:
-    def __init__(self):
+    def __init__(self, python_exec=None):
         self.temp_dir = None
         self.venv_path = None
+        if python_exec is None:
+            python_exec=sys.executable
+        else:
+            self.python_exec = python_exec
 
     def create_temporary_directory(self):
         self.temp_dir = tempfile.TemporaryDirectory()
@@ -15,7 +19,7 @@ class TemporaryVenvCreator:
 
     def create_virtual_environment(self):
         try:
-            subprocess.run(['python3', '-m', 'venv', self.venv_path], check=True)
+            subprocess.run([self.python_exec, '-m', 'venv', self.venv_path], check=True)
             print(f"Virtual environment created at {self.venv_path}")
         except subprocess.CalledProcessError as e:
             print(f"Error creating virtual environment: {e}")
@@ -36,8 +40,14 @@ class TemporaryVenvCreator:
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--python', help='Specify the Python executable', dest='python_exec', default=sys.executable)
+    args = parser.parse_args()
+    python_exec = args.python_exec
+
     print("(tempyenv) is setting up your virtual environment...hold tight")
-    venv_creator = TemporaryVenvCreator()
+    venv_creator = TemporaryVenvCreator(python_exec)
     venv_creator.create_temporary_directory()
     venv_creator.create_virtual_environment()
     venv_creator.load_virtual_environment()

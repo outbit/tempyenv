@@ -38,6 +38,17 @@ Virtual environment loading from /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/
 (tempyenv)(venv) $ echo "now you can pip install in your virtual environment"
 ```
 
+To specify a specific version of python
+```bash
+$ tempyenv -p python3.10
+```
+
+or
+
+```bash
+$ python3.10 -m tempyenv
+```
+
 License
 =======
 

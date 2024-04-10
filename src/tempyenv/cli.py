@@ -3,6 +3,7 @@ import subprocess
 import os
 import sys
 
+
 class TemporaryVenvCreator:
     def __init__(self):
         self.temp_dir = None
@@ -33,12 +34,14 @@ class TemporaryVenvCreator:
         except subprocess.CalledProcessError as e:
             print(f"Error loading virtual environment: {e}")
 
+
 def main():
     print("(tempyenv) is setting up your virtual environment...hold tight")
     venv_creator = TemporaryVenvCreator()
     venv_creator.create_temporary_directory()
     venv_creator.create_virtual_environment()
     venv_creator.load_virtual_environment()
+
 
 if __name__ == "__main__":
     main()

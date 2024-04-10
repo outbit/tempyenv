@@ -29,7 +29,8 @@ setup(
     url='https://github.com/outbit/tempyenv',
     license='MIT',
     install_requires=[
-        'setuptools'],
+        'setuptools',
+        'venv'],
     include_package_data=True,
     package_dir={
         '': 'src'},

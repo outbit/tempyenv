@@ -1,3 +1,3 @@
 #!/bin/bash
 export PYTHONPATH="${PYTHONPATH}:./src"
-coverage run --source=ansibledocgen -m unittest discover tests/units/
+coverage run --source=tempyenv -m unittest discover tests/units/

@@ -4,9 +4,9 @@ tempyenv
 Description
 ===========
 
-The easiest and quickest way to create a temp/tmp/temporary python virtual environment.
+An easy and quick way to create a temporary Python virtual environment.
 
-tempyenv sets up a python environment in a temporary path.  Quick way to create a throw away python environment.
+tempyenv sets up a python environment in a temporary path.
 
 [![Build Status](https://app.travis-ci.com/outbit/tempyenv.svg?branch=develop "ansible-docs latest build")](http://travis-ci.org/outbit/tempyenv)
 [![PIP Version](https://img.shields.io/pypi/v/tempyenv.svg "tempyenv PyPI version")](https://pypi.python.org/pypi/tempyenv)

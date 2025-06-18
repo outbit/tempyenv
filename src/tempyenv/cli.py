@@ -2,6 +2,8 @@ import tempfile
 import subprocess
 import os
 import sys
+import signal
+import atexit
 
 
 class TemporaryVenvCreator:
@@ -38,6 +40,15 @@ class TemporaryVenvCreator:
         except subprocess.CalledProcessError as e:
             print(f"Error loading virtual environment: {e}")
 
+    def cleanup(self):
+        if self.temp_dir is not None:
+            print("Cleaning up temporary virtual environment...")
+            try:
+                self.temp_dir.cleanup()
+                print("Temporary environment removed successfully.")
+            except Exception as e:
+                print(f"Error cleaning up temporary environment: {e}")
+
 
 def main():
     import argparse
@@ -50,6 +61,20 @@ def main():
     venv_creator = TemporaryVenvCreator(python_exec)
     venv_creator.create_temporary_directory()
     venv_creator.create_virtual_environment()
+
+    # Register cleanup handlers for various exit scenarios
+    def signal_handler(sig, frame):
+        print(f"\nReceived signal {sig}, cleaning up...")
+        venv_creator.cleanup()
+        sys.exit(0)
+
+    # Register signal handlers for common termination signals
+    signal.signal(signal.SIGINT, signal_handler)  # Ctrl+C
+    signal.signal(signal.SIGTERM, signal_handler) # Termination request
+
+    # Register cleanup on normal program exit
+    atexit.register(venv_creator.cleanup)
+
     venv_creator.load_virtual_environment()
 
 

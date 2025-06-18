@@ -1,10 +1,10 @@
 [project]
 name = "tempyenv"
-version = "1.0.4"
+version = "1.0.5"
 authors = [
   { name="David Whiteside", email="david@davidwhiteside.com" },
 ]
-description = "Easiest and quickest way to setup a temporary python virtual environment"
+description = "An easy and quick way to create a temporary Python virtual environment."
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
 requires-python = ">=3.7"

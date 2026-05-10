@@ -1,9 +1,12 @@
+import logging
 import tempfile
 import subprocess
 import os
 import sys
 import signal
 import atexit
+
+logger = logging.getLogger(__name__)
 
 
 class TemporaryVenvCreator:
@@ -24,7 +27,7 @@ class TemporaryVenvCreator:
             subprocess.run([self.python_exec, '-m', 'venv', self.venv_path], check=True)
             print(f"Virtual environment created at {self.venv_path}")
         except subprocess.CalledProcessError as e:
-            print(f"Error creating virtual environment: {e}")
+            logger.error(f"Error creating virtual environment: {e}")
 
     def load_virtual_environment(self):
         try:
@@ -38,7 +41,7 @@ class TemporaryVenvCreator:
                             stdout=sys.stdout,
                             stderr=sys.stderr)
         except subprocess.CalledProcessError as e:
-            print(f"Error loading virtual environment: {e}")
+            logger.error(f"Error loading virtual environment: {e}")
 
     def cleanup(self):
         if self.temp_dir is not None:
@@ -47,13 +50,16 @@ class TemporaryVenvCreator:
                 self.temp_dir.cleanup()
                 print("Temporary environment removed successfully.")
             except Exception as e:
-                print(f"Error cleaning up temporary environment: {e}")
+                logger.error(f"Error cleaning up temporary environment: {e}")
 
 
 def main():
     import argparse
+    from importlib.metadata import version
+    logging.basicConfig(level=logging.ERROR, format="%(levelname)s: %(message)s")
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--python', help='Specify the Python executable', dest='python_exec', default=sys.executable)
+    parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {version("tempyenv")}')
     args = parser.parse_args()
     python_exec = args.python_exec
 
@@ -64,7 +70,7 @@ def main():
 
     # Register cleanup handlers for various exit scenarios
     def signal_handler(sig, frame):
-        print(f"\nReceived signal {sig}, cleaning up...")
+        print(f"Received signal {sig}, cleaning up...")
         venv_creator.cleanup()
         sys.exit(0)
 
@@ -82,4 +88,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

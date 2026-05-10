@@ -25,6 +25,7 @@ build-backend = "setuptools.build_meta"
 [project.scripts]
 tempyenv = "tempyenv.cli:main"
 tmpyenv = "tempyenv.cli:main"
+tenv = "tempyenv.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -69,8 +69,10 @@ def main():
         sys.exit(0)
 
     # Register signal handlers for common termination signals
-    signal.signal(signal.SIGINT, signal_handler)  # Ctrl+C
-    signal.signal(signal.SIGTERM, signal_handler) # Termination request
+    signal.signal(signal.SIGINT, signal_handler)   # Ctrl+C
+    signal.signal(signal.SIGTERM, signal_handler)  # Termination request
+    signal.signal(signal.SIGHUP, signal_handler)   # Terminal hang-up
+    signal.signal(signal.SIGQUIT, signal_handler)  # Quit signal (Ctrl+\)
 
     # Register cleanup on normal program exit
     atexit.register(venv_creator.cleanup)

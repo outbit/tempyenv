@@ -2,6 +2,7 @@ import logging
 import tempfile
 import subprocess
 import os
+import shutil
 import sys
 import signal
 import atexit
@@ -13,10 +14,8 @@ class TemporaryVenvCreator:
     def __init__(self, python_exec=None):
         self.temp_dir = None
         self.venv_path = None
-        if python_exec is None:
-            python_exec=sys.executable
-        else:
-            self.python_exec = python_exec
+        self.python_exec = python_exec if python_exec is not None else sys.executable
+        self.uv_exec = shutil.which("uv")
 
     def create_temporary_directory(self):
         self.temp_dir = tempfile.TemporaryDirectory()
@@ -24,8 +23,12 @@ class TemporaryVenvCreator:
 
     def create_virtual_environment(self):
         try:
-            subprocess.run([self.python_exec, '-m', 'venv', self.venv_path], check=True)
-            print(f"Virtual environment created at {self.venv_path}")
+            if self.uv_exec:
+                subprocess.run([self.uv_exec, 'venv', '--python', self.python_exec, self.venv_path], check=True)
+                print(f"Virtual environment created at {self.venv_path} (via uv)")
+            else:
+                subprocess.run([self.python_exec, '-m', 'venv', self.venv_path], check=True)
+                print(f"Virtual environment created at {self.venv_path}")
         except subprocess.CalledProcessError as e:
             logger.error(f"Error creating virtual environment: {e}")
 

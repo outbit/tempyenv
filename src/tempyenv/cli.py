@@ -24,7 +24,7 @@ class TemporaryVenvCreator:
     def create_virtual_environment(self):
         try:
             if self.uv_exec:
-                subprocess.run([self.uv_exec, 'venv', '--python', self.python_exec, self.venv_path], check=True)
+                subprocess.run([self.uv_exec, 'venv', '--seed', '--python', self.python_exec, self.venv_path], check=True)
                 print(f"Virtual environment created at {self.venv_path} (via uv)")
             else:
                 subprocess.run([self.python_exec, '-m', 'venv', self.venv_path], check=True)

@@ -55,7 +55,10 @@ def test_uses_uv_venv_when_available(monkeypatch):
     cli.venv_path = "/tmp/fake/venv"
     cli.create_virtual_environment()
     assert calls == [
-        (["/usr/local/bin/uv", "venv", "--python", "python3.10", "/tmp/fake/venv"], {"check": True})
+        (
+            ["/usr/local/bin/uv", "venv", "--seed", "--python", "python3.10", "/tmp/fake/venv"],
+            {"check": True},
+        )
     ]
 
 

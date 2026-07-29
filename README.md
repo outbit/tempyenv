@@ -23,17 +23,30 @@ Usage
 ===========
 
 ```bash
-$ tmpyenv
-```
-
-or
-
-```bash
 $ tempyenv
 (tempyenv) is setting up your virtual environment...hold tight
 Virtual environment created at /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
 Virtual environment loading from /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
 (tempyenv)(venv) $ echo "now you can pip install in your virtual environment"
+```
+
+For a shorter command option, use:
+```bash
+$ tenv
+or
+$ tempyenv
+```
+
+Help
+```bash
+$ tempyenv -h
+usage: tempyenv [-h] [-p PYTHON_EXEC] [-v]
+
+options:
+  -h, --help            show this help message and exit
+  -p, --python PYTHON_EXEC
+                        Specify the Python executable
+  -v, --version         show program's version number and exit
 ```
 
 To specify a specific version of python

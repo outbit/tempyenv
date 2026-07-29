@@ -1,11 +1,11 @@
+import atexit
 import logging
-import tempfile
-import subprocess
 import os
 import shutil
-import sys
 import signal
-import atexit
+import subprocess
+import sys
+import tempfile
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,8 @@ class TemporaryVenvCreator:
                             f"source {self.venv_path}/bin/activate && export PS1=\"(tempyenv)$PS1\\$ \" && {current_shell}"],
                             stdin=sys.stdin,
                             stdout=sys.stdout,
-                            stderr=sys.stderr)
+                            stderr=sys.stderr,
+                            check=False)
         except subprocess.CalledProcessError as e:
             logger.error(f"Error loading virtual environment: {e}")
 
@@ -52,7 +53,7 @@ class TemporaryVenvCreator:
             try:
                 self.temp_dir.cleanup()
                 print("Temporary environment removed successfully.")
-            except Exception as e:
+            except OSError as e:
                 logger.error(f"Error cleaning up temporary environment: {e}")
 
 

@@ -39,7 +39,7 @@ class TemporaryVenvCreator:
             current_shell = "bash"
             subprocess.run([f"{current_shell}",
                             "-c",
-                            f"source {self.venv_path}/bin/activate && export PS1=\"(tempyenv)$PS1\\$ \" && {current_shell}"],
+                            f"export VIRTUAL_ENV_DISABLE_PROMPT=1 && source {self.venv_path}/bin/activate && export PS1=\"(tempyenv)$PS1\\$ \" && {current_shell}"],
                             stdin=sys.stdin,
                             stdout=sys.stdout,
                             stderr=sys.stderr,

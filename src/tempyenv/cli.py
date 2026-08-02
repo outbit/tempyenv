@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 
 
 class TemporaryVenvCreator:
+    BASH_COMPATIBLE_SHELLS = {"bash", "sh", "zsh", "ksh"}
+
     def __init__(self, python_exec=None):
         self.temp_dir = None
         self.venv_path = None
@@ -35,11 +37,30 @@ class TemporaryVenvCreator:
     def load_virtual_environment(self):
         try:
             print(f"Virtual environment loading from {self.venv_path}")
-            #current_shell = os.environ.get("SHELL") # Currently just support bash
-            current_shell = "bash"
+            user_shell_name = os.path.basename(os.environ.get("SHELL", ""))
+            if user_shell_name in self.BASH_COMPATIBLE_SHELLS:
+                current_shell = user_shell_name
+            else:
+                if shutil.which("bash") is None:
+                    raise RuntimeError(
+                        f"tempyenv only supports bash-compatible shells, but your shell "
+                        f"({user_shell_name or 'unknown'}) isn't one and bash was not found on PATH."
+                    )
+                print("Warning: tempyenv only supports bash-compatible shells, will attempt to launch a new bash shell")
+                current_shell = "bash"
+            current_ps1 = os.environ.get("PS1", "")
+            if os.environ.get("VIRTUAL_ENV_DISABLE_PROMPT"):
+                # User already opted out of venv prompt decoration - honor it.
+                set_ps1 = ""
+            elif current_ps1.startswith("(tempyenv)"):
+                # Already inside a tempyenv shell (e.g. tempyenv was run again
+                # from a nested shell) - avoid stacking duplicate prefixes.
+                set_ps1 = ""
+            else:
+                set_ps1 = "export PS1=\"(tempyenv)$PS1\\$ \" && "
             subprocess.run([f"{current_shell}",
                             "-c",
-                            f"export VIRTUAL_ENV_DISABLE_PROMPT=1 && source {self.venv_path}/bin/activate && export PS1=\"(tempyenv)$PS1\\$ \" && {current_shell}"],
+                            f"export VIRTUAL_ENV_DISABLE_PROMPT=1 && source {self.venv_path}/bin/activate && {set_ps1}{current_shell}"],
                             stdin=sys.stdin,
                             stdout=sys.stdout,
                             stderr=sys.stderr,

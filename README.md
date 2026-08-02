@@ -17,6 +17,8 @@ Installation
 
 ```shell
 $ python -m pip install tempyenv
+or
+$ uv tool install tempyenv
 ```
 
 Usage
@@ -32,8 +34,6 @@ Virtual environment loading from /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/
 
 For a shorter command option, use:
 ```bash
-$ tenv
-or
 $ tempyenv
 ```
 

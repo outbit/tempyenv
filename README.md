@@ -25,6 +25,11 @@ Using pip:
 $ python -m pip install tempyenv
 ```
 
+Using [Homebrew](https://brew.sh):
+```shell
+$ brew install outbit/tap/tempyenv
+```
+
 Usage
 ===========
 

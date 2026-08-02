@@ -33,8 +33,11 @@ $ tempyenv
 (tempyenv) is setting up your virtual environment...hold tight
 Virtual environment created at /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
 Virtual environment loading from /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
-(tempyenv)(venv) $ which pip
+(tempyenv)$ which pip
 /var/folders/j4/skpmllqx5ls_6s4kn3l25gq00000gn/T/tmpo5a2dwmh/venv/bin/pip
+(tempyenv)$ exit
+Cleaning up temporary virtual environment...
+Temporary environment removed successfully.
 ```
 
 Help
@@ -51,13 +54,7 @@ options:
 
 To specify a specific version of python
 ```bash
-$ tempyenv -p python3.10
-```
-
-or
-
-```bash
-$ python3.10 -m tempyenv
+$ tempyenv -p python3.14
 ```
 
 License

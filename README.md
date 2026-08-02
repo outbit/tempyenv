@@ -4,9 +4,9 @@ tempyenv
 Description
 ===========
 
-An easy and quick way to create a temporary Python virtual environment.
+The easy and quick way to create a temporary Python virtual environment.
 
-tempyenv sets up a python environment in a temporary path.
+`tempyenv` sets up a python environment in a temporary path and auto removes the environment when you exit.
 
 [![Build Status](https://app.travis-ci.com/outbit/tempyenv.svg?branch=develop "ansible-docs latest build")](http://travis-ci.org/outbit/tempyenv)
 [![PIP Version](https://img.shields.io/pypi/v/tempyenv.svg "tempyenv PyPI version")](https://pypi.python.org/pypi/tempyenv)
@@ -15,10 +15,14 @@ tempyenv sets up a python environment in a temporary path.
 Installation
 ===========
 
+Using [uv](https://docs.astral.sh/uv/) (recommended):
+```shell
+$ uv tool install tempyenv
+```
+
+Using pip:
 ```shell
 $ python -m pip install tempyenv
-or
-$ uv tool install tempyenv
 ```
 
 Usage
@@ -29,12 +33,8 @@ $ tempyenv
 (tempyenv) is setting up your virtual environment...hold tight
 Virtual environment created at /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
 Virtual environment loading from /var/folders/4b/dnp21z017cg_rbgfdtzclqlm0000gn/T/tmpacwjkg5z/venv
-(tempyenv)(venv) $ echo "now you can pip install in your virtual environment"
-```
-
-For a shorter command option, use:
-```bash
-$ tempyenv
+(tempyenv)(venv) $ which pip
+/var/folders/j4/skpmllqx5ls_6s4kn3l25gq00000gn/T/tmpo5a2dwmh/venv/bin/pip
 ```
 
 Help

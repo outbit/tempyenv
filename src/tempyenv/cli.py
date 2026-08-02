@@ -38,7 +38,7 @@ class TemporaryVenvCreator:
         try:
             print(f"Virtual environment loading from {self.venv_path}")
             user_shell_name = os.path.basename(os.environ.get("SHELL", ""))
-            if user_shell_name in self.BASH_COMPATIBLE_SHELLS:
+            if user_shell_name in TemporaryVenvCreator.BASH_COMPATIBLE_SHELLS:
                 current_shell = user_shell_name
             else:
                 if shutil.which("bash") is None:
